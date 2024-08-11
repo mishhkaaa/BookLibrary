@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -32,13 +34,7 @@ class ProfilePage extends StatelessWidget {
                 color: Colors.grey[600],
               ),
             ),
-            SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {
-                // Handle logout
-              },
-              child: Text('Logout'),
-            ),
+           // SizedBox(height: 30),
           ],
         ),
       ),

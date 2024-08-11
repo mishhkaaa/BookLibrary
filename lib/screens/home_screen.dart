@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'app_drawer.dart';
 import 'genres_tab_content.dart';
@@ -16,7 +18,8 @@ class HomeScreen extends StatefulWidget {
   final double fontSize;
   final ValueChanged<double> onChangeFontSize;
 
-  HomeScreen({
+  const HomeScreen({
+    super.key,
     required this.isDarkMode,
     required this.onToggleDarkMode,
     required this.fontSize,
@@ -47,15 +50,15 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Book Library Home'),
+        title: const Text('Book Library Home'),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.account_circle),
+            icon: const Icon(Icons.account_circle),
             onPressed: () {
               showDialog(
                 context: context,
-                builder: (context) => AlertDialog(
+                builder: (context) => const AlertDialog(
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -100,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen>
           controller: _tabController,
           isScrollable: true,
           indicatorColor: Colors.blue,
-          tabs: [
+          tabs: const [
             Tab(text: 'Home'),
             Tab(text: 'Genres'),
             Tab(text: 'Recently Read'),
@@ -129,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
                 fillColor: Colors.white,
                 filled: true,
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: const Icon(Icons.search),
               ),
             ),
           ),
@@ -138,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen>
               controller: _tabController,
               children: [
                 HomeTabContent(),
-                GenresTabContent(),
+                const GenresTabContent(),
                 RecentlyReadTabContent(),
                 ContinueReadingTabContent(),
                 ReadlistTabContent(),
