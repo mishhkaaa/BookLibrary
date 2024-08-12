@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
+import 'theme_provider.dart'; // Adjust import path as necessary
 
 class SettingsPage extends StatelessWidget {
   final bool isDarkMode;
@@ -16,6 +17,8 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
@@ -23,37 +26,32 @@ class SettingsPage extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(16.0),
         children: [
+          Text(
+            'Appearance and Personalization',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
           SwitchListTile(
             title: Text('Dark Mode'),
             value: isDarkMode,
             onChanged: onToggleDarkMode,
           ),
           SizedBox(height: 16),
-          Text('Font Size'),
+          Text(
+            'Font Size',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
           Slider(
             value: fontSize,
             min: 12.0,
             max: 24.0,
             divisions: 6,
             label: fontSize.round().toString(),
-            onChanged: onChangeFontSize,
+            onChanged: (double newValue) {
+              onChangeFontSize(newValue);
+            },
           ),
           SizedBox(height: 16),
           Divider(),
-          ListTile(
-            title: Text('Edit Profile'),
-            leading: Icon(Icons.edit),
-            onTap: () {
-              // Navigate to Edit Profile Page
-            },
-          ),
-          ListTile(
-            title: Text('Change Password'),
-            leading: Icon(Icons.lock),
-            onTap: () {
-              // Navigate to Change Password Page
-            },
-          ),
           ListTile(
             title: Text('Privacy Settings'),
             leading: Icon(Icons.privacy_tip),
@@ -69,17 +67,6 @@ class SettingsPage extends StatelessWidget {
             },
           ),
           Divider(),
-          ListTile(
-            title: Text('Clear Cache'),
-            leading: Icon(Icons.delete),
-            onTap: () async {
-              final tempDir = await getTemporaryDirectory();
-              tempDir.delete(recursive: true);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Cache Cleared')),
-              );
-            },
-          ),
           ListTile(
             title: Text('Help & Support'),
             leading: Icon(Icons.help),

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'settings_page.dart';
+import 'theme_provider.dart'; // Adjust import path as necessary
 
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
@@ -94,32 +98,23 @@ class ProfilePage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('Privacy Settings'),
-            leading: Icon(Icons.privacy_tip),
-            onTap: () {
-              // Navigate to Privacy Settings Page
-            },
-          ),
-          ListTile(
-            title: Text('Notification Settings'),
-            leading: Icon(Icons.notifications),
-            onTap: () {
-              // Navigate to Notification Settings Page
-            },
-          ),
-          ListTile(
             title: Text('App Settings'),
             leading: Icon(Icons.settings),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => SettingsPage(
-                          isDarkMode: false,
-                          onToggleDarkMode: (value) {},
-                          fontSize: 16.0,
-                          onChangeFontSize: (value) {},
-                        )),
+                  builder: (context) => SettingsPage(
+                    isDarkMode: themeProvider.isDarkMode,
+                    onToggleDarkMode: (value) {
+                      themeProvider.toggleDarkMode(value);
+                    },
+                    fontSize: themeProvider.fontSize,
+                    onChangeFontSize: (value) {
+                      themeProvider.changeFontSize(value);
+                    },
+                  ),
+                ),
               );
             },
           ),
