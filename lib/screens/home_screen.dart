@@ -1,16 +1,14 @@
-// ignore_for_file: library_private_types_in_public_api, prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'app_drawer.dart';
 import 'genres_tab_content.dart';
 import 'recently_read_tab_content.dart';
 import 'continue_reading_tab_content.dart';
 import 'readlist_tab_content.dart';
-// ignore: unused_import
-import 'my_books_page.dart';
-// ignore: unused_import
-import 'profile_page.dart';
 import 'home_tab_content.dart';
+import 'search_provider.dart'; // Ensure this import path is correct
+import 'book_search_delegate.dart'; // Ensure this import path is correct
+import 'book_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   final bool isDarkMode;
@@ -48,11 +46,22 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
+    final searchProvider = Provider.of<SearchProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Book Library Home'),
         centerTitle: true,
         actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: BookSearchDelegate(),
+              );
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.account_circle),
             onPressed: () {
@@ -134,6 +143,9 @@ class _HomeScreenState extends State<HomeScreen>
                 filled: true,
                 prefixIcon: const Icon(Icons.search),
               ),
+              onChanged: (query) {
+                searchProvider.setQuery(query);
+              },
             ),
           ),
           Expanded(
@@ -141,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen>
               controller: _tabController,
               children: [
                 HomeTabContent(),
-                const GenresTabContent(),
+                GenresTabContent(),
                 RecentlyReadTabContent(),
                 ContinueReadingTabContent(),
                 ReadlistTabContent(readList: [],),
@@ -149,6 +161,71 @@ class _HomeScreenState extends State<HomeScreen>
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () =>
+            _showAddBookDialog(context), // Trigger the Add Book dialog
+        child: const Icon(Icons.add),
+        tooltip: 'Add a new book',
+      ),
+    );
+  }
+
+  void _showAddBookDialog(BuildContext context) {
+    final bookTitleController = TextEditingController();
+    final bookSummaryController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Add Book'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: bookTitleController,
+                decoration: const InputDecoration(labelText: 'Title'),
+              ),
+              TextField(
+                controller: bookSummaryController,
+                decoration: const InputDecoration(labelText: 'Summary'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                _addBookToReadlist(
+                  context,
+                  bookTitleController.text,
+                  bookSummaryController.text,
+                );
+                Navigator.of(context).pop();
+              },
+              child: const Text('Add'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _addBookToReadlist(BuildContext context, String title, String summary) {
+    final bookProvider = Provider.of<BookProvider>(context, listen: false);
+
+    bookProvider.addToReadlist(
+      Book(
+        title: title,
+        imageUrl:
+            'https://placeimg.com/640/480/any', // Example placeholder image
+        summary: summary,
       ),
     );
   }
