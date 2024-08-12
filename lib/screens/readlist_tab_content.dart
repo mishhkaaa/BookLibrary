@@ -3,10 +3,19 @@
 import 'package:flutter/material.dart';
 
 class ReadlistTabContent extends StatelessWidget {
+  final List<String> readList;
+
+  const ReadlistTabContent({required this.readList});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Readlist Tab Content'),
+    return ListView.builder(
+      itemCount: readList.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(readList[index]),
+        );
+      },
     );
   }
 }

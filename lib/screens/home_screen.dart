@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'app_drawer.dart';
@@ -144,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen>
                 const GenresTabContent(),
                 RecentlyReadTabContent(),
                 ContinueReadingTabContent(),
-                ReadlistTabContent(),
+                ReadlistTabContent(readList: [],),
               ],
             ),
           ),
