@@ -47,10 +47,18 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     final searchProvider = Provider.of<SearchProvider>(context);
+    final bookProvider = Provider.of<BookProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Book Library Home'),
+        title: Text(
+          'Librazy',
+          style: TextStyle(
+            fontSize: 28, // Set your desired font size here
+            fontWeight: FontWeight.bold, // Optionally set font weight
+            color: Colors.white, // Set text color to white
+          ),
+        ),
         centerTitle: true,
         actions: [
           IconButton(
@@ -67,43 +75,45 @@ class _HomeScreenState extends State<HomeScreen>
             onPressed: () {
               showDialog(
                 context: context,
-                builder: (context) => const AlertDialog(
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      CircleAvatar(
-                        radius: 40,
-                        backgroundImage:
-                            NetworkImage('https://placeimg.com/80/80/people'),
-                      ),
-                      SizedBox(height: 16),
-                      Text(
-                        'User Name',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+                builder: (context) {
+                  return AlertDialog(
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CircleAvatar(
+                          radius: 40,
+                          backgroundImage:
+                              NetworkImage('https://placeimg.com/80/80/people'),
                         ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Column(
-                            children: [
-                              Text('10'),
-                              Text('Books Read'),
-                            ],
+                        SizedBox(height: 16),
+                        Text(
+                          'User Name',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
                           ),
-                          Column(
-                            children: [
-                              Text('20'),
-                              Text('Books to Read'),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Column(
+                              children: [
+                                Text('${bookProvider.numberOfBooksRead}'),
+                                Text('Books Read'),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text('${bookProvider.numberOfBooksToRead}'),
+                                Text('Books to Read'),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                },
               );
             },
           ),
@@ -111,7 +121,14 @@ class _HomeScreenState extends State<HomeScreen>
         bottom: TabBar(
           controller: _tabController,
           isScrollable: true,
-          indicatorColor: Colors.blue,
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.grey,
+          labelStyle: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+          indicatorColor: Colors.white,
+          indicatorWeight: 3.0,
           tabs: const [
             Tab(text: 'Home'),
             Tab(text: 'Genres'),
@@ -128,43 +145,46 @@ class _HomeScreenState extends State<HomeScreen>
         onChangeFontSize: widget.onChangeFontSize,
         tabController: _tabController,
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Search for books...',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25.0),
-                  borderSide: BorderSide.none,
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Search for books...',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide.none,
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                    prefixIcon: const Icon(Icons.search),
+                  ),
+                  onChanged: (query) {
+                    searchProvider.setQuery(query);
+                  },
                 ),
-                fillColor: Colors.white,
-                filled: true,
-                prefixIcon: const Icon(Icons.search),
               ),
-              onChanged: (query) {
-                searchProvider.setQuery(query);
-              },
-            ),
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                HomeTabContent(),
-                GenresTabContent(),
-                RecentlyReadTabContent(),
-                ContinueReadingTabContent(),
-                ReadlistTabContent(),
-              ],
-            ),
-          ),
-        ],
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    HomeTabContent(height: constraints.maxHeight),
+                    GenresTabContent(height: constraints.maxHeight),
+                    RecentlyReadTabContent(height: constraints.maxHeight),
+                    ContinueReadingTabContent(height: constraints.maxHeight),
+                    ReadlistTabContent(height: constraints.maxHeight),
+                  ],
+                ),
+              ),
+            ],
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () =>
-            _showAddBookDialog(context), // Trigger the Add Book dialog
+        onPressed: () => _showAddBookDialog(context),
         child: const Icon(Icons.add),
         tooltip: 'Add a new book',
       ),
@@ -222,9 +242,7 @@ class _HomeScreenState extends State<HomeScreen>
 
     bookProvider.addToReadlist(
       Book(
-        title: title,
-        imageUrl:
-            'https://placeimg.com/640/480/any', // Example placeholder image
+        title: title, // Example placeholder image
         summary: summary,
       ),
     );
