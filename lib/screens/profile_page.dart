@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'settings_page.dart';
-import 'theme_provider.dart'; // Adjust import path as necessary
+import 'theme_provider.dart';
+import 'help_and_support_page.dart'; // Adjust import path as necessary
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -122,7 +123,12 @@ class ProfilePage extends StatelessWidget {
             title: Text('Help & Support'),
             leading: Icon(Icons.help),
             onTap: () {
-              // Navigate to Help & Support Page
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HelpAndSupportPage(),
+                ),
+              );
             },
           ),
           ListTile(

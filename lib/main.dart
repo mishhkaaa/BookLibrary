@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'screens/home_screen.dart';
@@ -5,6 +7,7 @@ import 'screens/theme_provider.dart'; // Adjust import path as needed
 import 'screens/search_provider.dart'; // Adjust import path as needed
 import 'screens/readlist_provider.dart'; // Import the ReadlistProvider
 import 'screens/book_provider.dart';
+import 'screens/help_and_support_page.dart'; // Adjust path as necessary
 
 void main() {
   runApp(
