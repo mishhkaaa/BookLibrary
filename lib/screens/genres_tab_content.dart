@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class GenresTabContent extends StatelessWidget {
-  const GenresTabContent({super.key});
+  final double height;
+
+  const GenresTabContent({super.key, required this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -440,14 +442,14 @@ class GenresTabContent extends StatelessWidget {
       ],
     };
 
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: genres.entries.map((entry) {
-            return Column(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+<<<<<<< HEAD
               children: [
                 // Genre Title
                 Text(
@@ -510,6 +512,67 @@ class GenresTabContent extends StatelessWidget {
           }).toList(),
         ),
       ),
+=======
+              children: genres.entries.map((entry) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      entry.key,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      height: height * 0.3, // Use the height parameter
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: entry.value.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              // Handle book selection
+                            },
+                            child: Container(
+                              width: 150,
+                              margin: const EdgeInsets.only(right: 16),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    height: 200,
+                                    width: 150,
+                                    color: Colors.grey,
+                                    child: const Center(
+                                      child: Icon(Icons.book, size: 50),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    entry.value[index],
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                  ],
+                );
+              }).toList(),
+            ),
+          ),
+        );
+      },
+>>>>>>> 692d4392bc18a8a20d4408325b903b5f83e9c1d8
     );
   }
 }

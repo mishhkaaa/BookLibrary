@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'settings_page.dart';
+<<<<<<< HEAD
 import 'theme_provider.dart';
 import 'help_and_support_page.dart'; // Adjust import path as necessary
+=======
+import 'theme_provider.dart'; // Adjust import path as necessary
+import 'book_provider.dart'; // Adjust import path as necessary
+>>>>>>> 692d4392bc18a8a20d4408325b903b5f83e9c1d8
 
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final bookProvider = Provider.of<BookProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: Text(
+          'Profile',
+          style: TextStyle(color: Colors.white, fontSize: 26),
+        ),
       ),
       body: ListView(
         padding: EdgeInsets.all(16.0),
@@ -62,7 +71,7 @@ class ProfilePage extends StatelessWidget {
           SizedBox(height: 30),
           ListTile(
             title: Text('Books Read'),
-            subtitle: Text('10 Books'),
+            subtitle: Text('${bookProvider.recentlyRead.length} Books'),
             leading: Icon(Icons.book),
             onTap: () {
               // Navigate to Books Read Page
@@ -70,7 +79,7 @@ class ProfilePage extends StatelessWidget {
           ),
           ListTile(
             title: Text('Currently Reading'),
-            subtitle: Text('5 Books'),
+            subtitle: Text('${bookProvider.continueReading.length} Books'),
             leading: Icon(Icons.bookmark),
             onTap: () {
               // Navigate to Currently Reading Page

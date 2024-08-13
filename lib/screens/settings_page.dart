@@ -17,11 +17,15 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: Text(
+          'Settings',
+          style: TextStyle(color: Colors.white, fontSize: 26),
+        ),
       ),
       body: ListView(
         padding: EdgeInsets.all(16.0),

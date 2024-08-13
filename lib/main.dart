@@ -7,7 +7,11 @@ import 'screens/theme_provider.dart'; // Adjust import path as needed
 import 'screens/search_provider.dart'; // Adjust import path as needed
 import 'screens/readlist_provider.dart'; // Import the ReadlistProvider
 import 'screens/book_provider.dart';
+<<<<<<< HEAD
 import 'screens/help_and_support_page.dart'; // Adjust path as necessary
+=======
+import 'screens/app_colors.dart'; // Import the colors
+>>>>>>> 692d4392bc18a8a20d4408325b903b5f83e9c1d8
 
 void main() {
   runApp(
@@ -30,10 +34,12 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Book Library',
-      theme: themeProvider.currentTheme.copyWith(
+      theme: ThemeData(
+        primaryColor: AppColors.darkBlue,
+        hintColor: AppColors.accentOrange,
+        scaffoldBackgroundColor: AppColors.lightSkyBlue,
         textTheme: themeProvider.isDarkMode
             ? TextTheme(
-                // Set dark theme text colors
                 bodyLarge: TextStyle(
                     color: Colors.white, fontSize: themeProvider.fontSize),
                 bodyMedium: TextStyle(
@@ -52,7 +58,6 @@ class MyApp extends StatelessWidget {
                     color: Colors.white, fontSize: themeProvider.fontSize),
               )
             : TextTheme(
-                // Set light theme text colors
                 bodyLarge: TextStyle(
                     color: Colors.black, fontSize: themeProvider.fontSize),
                 bodyMedium: TextStyle(
@@ -70,6 +75,27 @@ class MyApp extends StatelessWidget {
                 titleLarge: TextStyle(
                     color: Colors.black, fontSize: themeProvider.fontSize),
               ),
+        buttonTheme: ButtonThemeData(
+          buttonColor: AppColors.accentOrange, // Color of buttons
+          textTheme: ButtonTextTheme.primary,
+        ),
+        appBarTheme: AppBarTheme(
+          color: AppColors.darkBlue,
+          iconTheme: IconThemeData(color: AppColors.neutralWhite),
+        ),
+        colorScheme: ColorScheme(
+          primary: AppColors.darkBlue,
+          secondary: AppColors.accentOrange,
+          surface: AppColors.neutralWhite,
+          background: AppColors.lightSkyBlue,
+          error: Colors.red,
+          onPrimary: Colors.white,
+          onSecondary: Colors.white,
+          onSurface: Colors.black,
+          onBackground: Colors.black,
+          onError: Colors.white,
+          brightness: Brightness.light,
+        ),
       ),
       home: HomeScreen(
         isDarkMode: themeProvider.isDarkMode,
