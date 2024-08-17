@@ -6,14 +6,19 @@ class MyBooksPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bookProvider = Provider.of<BookProvider>(context);
-    final myBooks = bookProvider
-        .readlist; // Assuming that 'My Books' list is stored in '_readlist'
+    final myBooks = bookProvider.myBooks;
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'My Books',
           style: TextStyle(color: Colors.white, fontSize: 26),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // Navigate back to the previous screen
+          },
         ),
       ),
       body: myBooks.isEmpty
@@ -35,6 +40,17 @@ class MyBooksPage extends StatelessWidget {
                   subtitle: Text(
                     book.summary,
                     style: TextStyle(fontSize: 18),
+                  ),
+                  trailing: ElevatedButton(
+                    onPressed: () {
+                      bookProvider.removeFromMyBooks(book);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('${book.title} removed from My Books'),
+                        ),
+                      );
+                    },
+                    child: Text('Remove'),
                   ),
                 );
               },

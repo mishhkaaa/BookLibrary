@@ -32,43 +32,32 @@ class MyApp extends StatelessWidget {
         primaryColor: AppColors.darkBlue,
         hintColor: AppColors.accentOrange,
         scaffoldBackgroundColor: AppColors.lightSkyBlue,
-        textTheme: themeProvider.isDarkMode
-            ? TextTheme(
-                bodyLarge: TextStyle(
-                    color: Colors.white, fontSize: themeProvider.fontSize),
-                bodyMedium: TextStyle(
-                    color: Colors.white, fontSize: themeProvider.fontSize),
-                displayLarge: TextStyle(
-                    color: Colors.white, fontSize: themeProvider.fontSize),
-                displayMedium: TextStyle(
-                    color: Colors.white, fontSize: themeProvider.fontSize),
-                displaySmall: TextStyle(
-                    color: Colors.white, fontSize: themeProvider.fontSize),
-                headlineMedium: TextStyle(
-                    color: Colors.white, fontSize: themeProvider.fontSize),
-                headlineSmall: TextStyle(
-                    color: Colors.white, fontSize: themeProvider.fontSize),
-                titleLarge: TextStyle(
-                    color: Colors.white, fontSize: themeProvider.fontSize),
-              )
-            : TextTheme(
-                bodyLarge: TextStyle(
-                    color: Colors.black, fontSize: themeProvider.fontSize),
-                bodyMedium: TextStyle(
-                    color: Colors.black, fontSize: themeProvider.fontSize),
-                displayLarge: TextStyle(
-                    color: Colors.black, fontSize: themeProvider.fontSize),
-                displayMedium: TextStyle(
-                    color: Colors.black, fontSize: themeProvider.fontSize),
-                displaySmall: TextStyle(
-                    color: Colors.black, fontSize: themeProvider.fontSize),
-                headlineMedium: TextStyle(
-                    color: Colors.black, fontSize: themeProvider.fontSize),
-                headlineSmall: TextStyle(
-                    color: Colors.black, fontSize: themeProvider.fontSize),
-                titleLarge: TextStyle(
-                    color: Colors.black, fontSize: themeProvider.fontSize),
-              ),
+        textTheme: TextTheme(
+          bodyLarge: TextStyle(
+              color: themeProvider.currentTheme.textTheme.bodyLarge?.color,
+              fontSize: themeProvider.fontSize),
+          bodyMedium: TextStyle(
+              color: themeProvider.currentTheme.textTheme.bodyMedium?.color,
+              fontSize: themeProvider.fontSize),
+          displayLarge: TextStyle(
+              color: themeProvider.currentTheme.textTheme.displayLarge?.color,
+              fontSize: themeProvider.fontSize),
+          displayMedium: TextStyle(
+              color: themeProvider.currentTheme.textTheme.displayMedium?.color,
+              fontSize: themeProvider.fontSize),
+          displaySmall: TextStyle(
+              color: themeProvider.currentTheme.textTheme.displaySmall?.color,
+              fontSize: themeProvider.fontSize),
+          headlineMedium: TextStyle(
+              color: themeProvider.currentTheme.textTheme.headlineMedium?.color,
+              fontSize: themeProvider.fontSize),
+          headlineSmall: TextStyle(
+              color: themeProvider.currentTheme.textTheme.headlineSmall?.color,
+              fontSize: themeProvider.fontSize),
+          titleLarge: TextStyle(
+              color: themeProvider.currentTheme.textTheme.titleLarge?.color,
+              fontSize: themeProvider.fontSize),
+        ),
         buttonTheme: ButtonThemeData(
           buttonColor: AppColors.accentOrange, // Color of buttons
           textTheme: ButtonTextTheme.primary,
@@ -92,10 +81,6 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: HomeScreen(
-        isDarkMode: themeProvider.isDarkMode,
-        onToggleDarkMode: (value) {
-          themeProvider.toggleDarkMode(value);
-        },
         fontSize: themeProvider.fontSize,
         onChangeFontSize: (value) {
           themeProvider.changeFontSize(value);

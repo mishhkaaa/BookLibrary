@@ -1,13 +1,80 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'settings_page.dart';
-import 'theme_provider.dart'; // Adjust import path as necessary
 import 'book_provider.dart'; // Adjust import path as necessary
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  String _userName = 'User Name';
+  String _email = 'user@example.com';
+  String _phoneNumber = '+1234567890';
+  String _location = 'New York, USA';
+
+  void _editProfile() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final _userNameController = TextEditingController(text: _userName);
+        final _emailController = TextEditingController(text: _email);
+        final _phoneNumberController =
+            TextEditingController(text: _phoneNumber);
+        final _locationController = TextEditingController(text: _location);
+
+        return AlertDialog(
+          title: Text('Edit Profile'),
+          content: SingleChildScrollView(
+            child: Column(
+              children: [
+                TextField(
+                  controller: _userNameController,
+                  decoration: InputDecoration(labelText: 'User Name'),
+                ),
+                TextField(
+                  controller: _emailController,
+                  decoration: InputDecoration(labelText: 'Email'),
+                ),
+                TextField(
+                  controller: _phoneNumberController,
+                  decoration: InputDecoration(labelText: 'Phone Number'),
+                ),
+                TextField(
+                  controller: _locationController,
+                  decoration: InputDecoration(labelText: 'Location'),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  _userName = _userNameController.text;
+                  _email = _emailController.text;
+                  _phoneNumber = _phoneNumberController.text;
+                  _location = _locationController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
     final bookProvider = Provider.of<BookProvider>(context);
 
     return Scaffold(
@@ -30,7 +97,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 Text(
-                  'User Name',
+                  _userName,
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -38,7 +105,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'user@example.com',
+                  _email,
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey[600],
@@ -46,7 +113,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'Phone Number: +1234567890',
+                  'Phone Number: $_phoneNumber',
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey[600],
@@ -54,7 +121,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'Location: New York, USA',
+                  'Location: $_location',
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey[600],
@@ -91,16 +158,7 @@ class ProfilePage extends StatelessWidget {
           ListTile(
             title: Text('Edit Profile'),
             leading: Icon(Icons.edit),
-            onTap: () {
-              // Navigate to Edit Profile Page
-            },
-          ),
-          ListTile(
-            title: Text('Change Password'),
-            leading: Icon(Icons.lock),
-            onTap: () {
-              // Navigate to Change Password Page
-            },
+            onTap: _editProfile,
           ),
           ListTile(
             title: Text('App Settings'),
@@ -110,39 +168,14 @@ class ProfilePage extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => SettingsPage(
-                    isDarkMode: themeProvider.isDarkMode,
-                    onToggleDarkMode: (value) {
-                      themeProvider.toggleDarkMode(value);
-                    },
-                    fontSize: themeProvider.fontSize,
+                    fontSize: 16.0, // Provide a default or current font size
                     onChangeFontSize: (value) {
-                      themeProvider.changeFontSize(value);
+                      // Handle font size change if necessary
                     },
                   ),
                 ),
               );
             },
-          ),
-          ListTile(
-            title: Text('Help & Support'),
-            leading: Icon(Icons.help),
-            onTap: () {
-              // Navigate to Help & Support Page
-            },
-          ),
-          ListTile(
-            title: Text('About & Legal'),
-            leading: Icon(Icons.info),
-            onTap: () {
-              // Navigate to About & Legal Page
-            },
-          ),
-          SizedBox(height: 30),
-          ElevatedButton(
-            onPressed: () {
-              // Handle logout
-            },
-            child: Text('Logout'),
           ),
         ],
       ),
