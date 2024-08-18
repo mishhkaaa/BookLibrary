@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, use_key_in_widget_constructors
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, deprecated_member_use
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,11 +7,7 @@ import 'screens/theme_provider.dart'; // Adjust import path as needed
 import 'screens/search_provider.dart'; // Adjust import path as needed
 import 'screens/readlist_provider.dart'; // Import the ReadlistProvider
 import 'screens/book_provider.dart';
-<<<<<<< HEAD
-import 'screens/help_and_support_page.dart'; // Adjust path as necessary
-=======
 import 'screens/app_colors.dart'; // Import the colors
->>>>>>> 692d4392bc18a8a20d4408325b903b5f83e9c1d8
 
 void main() {
   runApp(

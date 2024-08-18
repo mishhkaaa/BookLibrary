@@ -8,10 +8,6 @@ class HomeTabContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return Center(
-      child: Text('Home Tab Content'),
-=======
     final double screenWidth = MediaQuery.of(context).size.width;
     final double textWidth = screenWidth * 0.5;
     final double logoSize = 180;
@@ -134,7 +130,6 @@ class HomeTabContent extends StatelessWidget {
           ],
         ),
       ),
->>>>>>> 692d4392bc18a8a20d4408325b903b5f83e9c1d8
     );
   }
 }

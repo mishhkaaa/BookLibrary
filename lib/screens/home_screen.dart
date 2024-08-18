@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'app_drawer.dart';
@@ -167,26 +169,6 @@ class _HomeScreenState extends State<HomeScreen>
                   },
                 ),
               ),
-<<<<<<< HEAD
-              onChanged: (query) {
-                searchProvider.setQuery(query);
-              },
-            ),
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                HomeTabContent(),
-                GenresTabContent(),
-                RecentlyReadTabContent(),
-                ContinueReadingTabContent(),
-                ReadlistTabContent(readList: [],),
-              ],
-            ),
-          ),
-        ],
-=======
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
@@ -202,7 +184,6 @@ class _HomeScreenState extends State<HomeScreen>
             ],
           );
         },
->>>>>>> 692d4392bc18a8a20d4408325b903b5f83e9c1d8
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showAddBookDialog(context),

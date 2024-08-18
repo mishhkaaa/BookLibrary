@@ -4,15 +4,9 @@ import 'book_provider.dart';
 import 'search_provider.dart';
 
 class ReadlistTabContent extends StatelessWidget {
-<<<<<<< HEAD
-  final List<String> readList;
-
-  const ReadlistTabContent({required this.readList});
-=======
   final double height;
 
   const ReadlistTabContent({super.key, required this.height});
->>>>>>> 692d4392bc18a8a20d4408325b903b5f83e9c1d8
 
   @override
   Widget build(BuildContext context) {

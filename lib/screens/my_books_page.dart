@@ -7,7 +7,7 @@ class MyBooksPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final bookProvider = Provider.of<BookProvider>(context);
     final myBooks = bookProvider
-        .readlist; // Assuming that 'My Books' list is stored in '_readlist'
+        .myBooks; // Assuming that 'My Books' list is stored in '_readlist'
 
     return Scaffold(
       appBar: AppBar(
