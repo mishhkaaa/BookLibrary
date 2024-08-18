@@ -16,6 +16,7 @@ class ContinueReadingTabContent extends StatelessWidget {
     final bookProvider = Provider.of<BookProvider>(context);
     final query = searchProvider.query;
 
+    // Filter books based on the search query
     final books = bookProvider.continueReading
         .where((book) => book.title.toLowerCase().contains(query.toLowerCase()))
         .toList();
@@ -35,27 +36,29 @@ class ContinueReadingTabContent extends StatelessWidget {
                 book.summary,
                 style: TextStyle(fontSize: 20),
               ),
-              trailing: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   ElevatedButton(
                     onPressed: () {
                       bookProvider.completeReading(book);
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                            content:
-                                Text('${book.title} moved to Recently Read')),
+                          content: Text('${book.title} moved to Recently Read'),
+                        ),
                       );
                     },
                     child: Text('Complete Reading'),
                   ),
+                  SizedBox(width: 8),
                   ElevatedButton(
                     onPressed: () {
                       bookProvider.deleteFromContinueReading(book);
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                            content: Text(
-                                '${book.title} removed from Continue Reading')),
+                          content: Text(
+                              '${book.title} removed from Continue Reading'),
+                        ),
                       );
                     },
                     child: Text('Delete'),

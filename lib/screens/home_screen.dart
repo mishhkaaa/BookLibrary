@@ -13,15 +13,11 @@ import 'book_search_delegate.dart'; // Ensure this import path is correct
 import 'book_provider.dart';
 
 class HomeScreen extends StatefulWidget {
-  final bool isDarkMode;
-  final ValueChanged<bool> onToggleDarkMode;
   final double fontSize;
   final ValueChanged<double> onChangeFontSize;
 
   const HomeScreen({
     super.key,
-    required this.isDarkMode,
-    required this.onToggleDarkMode,
     required this.fontSize,
     required this.onChangeFontSize,
   });
@@ -141,8 +137,6 @@ class _HomeScreenState extends State<HomeScreen>
         ),
       ),
       drawer: AppDrawer(
-        isDarkMode: widget.isDarkMode,
-        onToggleDarkMode: widget.onToggleDarkMode,
         fontSize: widget.fontSize,
         onChangeFontSize: widget.onChangeFontSize,
         tabController: _tabController,
@@ -244,8 +238,16 @@ class _HomeScreenState extends State<HomeScreen>
 
     bookProvider.addToReadlist(
       Book(
-        title: title, // Example placeholder image
+        title: title,
         summary: summary,
+      ),
+    );
+
+    // Display a snackbar with a message
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('$title has been added to the readlist'),
+        duration: Duration(seconds: 2),
       ),
     );
   }

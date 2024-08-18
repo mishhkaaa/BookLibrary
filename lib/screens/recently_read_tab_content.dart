@@ -37,8 +37,8 @@ class RecentlyReadTabContent extends StatelessWidget {
                 book.summary,
                 style: TextStyle(fontSize: 20),
               ),
-              trailing: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   ElevatedButton(
                     onPressed: () {
@@ -46,18 +46,21 @@ class RecentlyReadTabContent extends StatelessWidget {
                       bookProvider.removeFromRecentlyRead(book);
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                            content: Text('${book.title} moved to My Books')),
+                          content: Text('${book.title} moved to My Books'),
+                        ),
                       );
                     },
                     child: Text('Add to My Books'),
                   ),
+                  SizedBox(width: 8),
                   ElevatedButton(
                     onPressed: () {
                       bookProvider.removeFromRecentlyRead(book);
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                            content: Text(
-                                '${book.title} removed from Recently Read')),
+                          content:
+                              Text('${book.title} removed from Recently Read'),
+                        ),
                       );
                     },
                     child: Text('Delete'),
