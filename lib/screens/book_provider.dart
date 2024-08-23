@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields
+
 import 'package:flutter/material.dart';
 
 class Book {
@@ -15,7 +17,7 @@ class BookProvider extends ChangeNotifier {
     Book(
       title: 'Verity',
       summary:
-          'In Verity, struggling writer Lowen Ashleigh is offered a lucrative opportunity to finish the remaining books in a successful author Verity Crawford\'s series after her tragic accident. Lowen moves into the Crawford home to review Verity\’s notes and research. While there, she discovers an unpublished autobiography by Verity that reveals disturbing and violent truths about Verity\’s life and her family. As Lowen delves deeper into the manuscript, she becomes entangled in a web of deception, danger, and psychological manipulation. The novel explores themes of truth, deception, and the moral ambiguity of its characters.',
+          'In Verity, struggling writer Lowen Ashleigh is offered a lucrative opportunity to finish the remaining books in a successful author Verity Crawford\'s series after her tragic accident. Lowen moves into the Crawford home to review Verity’s notes and research. While there, she discovers an unpublished autobiography by Verity that reveals disturbing and violent truths about Verity’s life and her family. As Lowen delves deeper into the manuscript, she becomes entangled in a web of deception, danger, and psychological manipulation. The novel explores themes of truth, deception, and the moral ambiguity of its characters.',
     ),
     Book(
       title: 'The Silent Patient',
@@ -25,7 +27,7 @@ class BookProvider extends ChangeNotifier {
     Book(
       title: 'Never Lie',
       summary:
-          'In Never Lie, Dr. Hannah Brown is a psychologist who is recovering from a traumatic experience and moves to a new town for a fresh start. She starts working with a patient, Sarah, who is suspected of a serious crime but insists on her innocence. As Hannah delves into Sarah\’s past, she begins to uncover a series of lies and deceptions that challenge her understanding of truth and morality. The novel is a psychological thriller that explores the impact of trauma, the intricacies of human behavior, and the quest for justice.',
+          'In Never Lie, Dr. Hannah Brown is a psychologist who is recovering from a traumatic experience and moves to a new town for a fresh start. She starts working with a patient, Sarah, who is suspected of a serious crime but insists on her innocence. As Hannah delves into Sarah’s past, she begins to uncover a series of lies and deceptions that challenge her understanding of truth and morality. The novel is a psychological thriller that explores the impact of trauma, the intricacies of human behavior, and the quest for justice.',
     ),
   ];
 

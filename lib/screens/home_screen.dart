@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, prefer_const_constructors, sort_child_properties_last
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'app_drawer.dart';
@@ -32,6 +34,10 @@ class _HomeScreenState extends State<HomeScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 5, vsync: this);
+  }
+
+  void _switchToReadlistTab() {
+    _tabController.animateTo(3); // Assuming the Readlist tab is at index 3
   }
 
   @override
@@ -73,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen>
                 context: context,
                 builder: (context) {
                   return AlertDialog(
+                    backgroundColor: Colors.white,
                     content: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -86,6 +93,7 @@ class _HomeScreenState extends State<HomeScreen>
                           'User Name',
                           style: TextStyle(
                             fontSize: 24,
+                            color: Color.fromARGB(255, 8, 27, 149),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -193,17 +201,30 @@ class _HomeScreenState extends State<HomeScreen>
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Add Book'),
+          backgroundColor: Colors.white,
+          title: const Text(
+            'Add Book',
+            style: TextStyle(
+                color: Color.fromARGB(255, 8, 27, 149),
+                fontSize: 24,
+                fontWeight: FontWeight.bold),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: bookTitleController,
-                decoration: const InputDecoration(labelText: 'Title'),
+                decoration: const InputDecoration(
+                    labelText: 'Title',
+                    labelStyle:
+                        TextStyle(color: Color.fromARGB(255, 8, 27, 149))),
               ),
               TextField(
                 controller: bookSummaryController,
-                decoration: const InputDecoration(labelText: 'Summary'),
+                decoration: const InputDecoration(
+                    labelText: 'Summary',
+                    labelStyle:
+                        TextStyle(color: Color.fromARGB(255, 8, 27, 149))),
               ),
             ],
           ),
@@ -221,6 +242,7 @@ class _HomeScreenState extends State<HomeScreen>
                   bookTitleController.text,
                   bookSummaryController.text,
                 );
+                _tabController.animateTo(4);
                 Navigator.of(context).pop();
               },
               child: const Text('Add'),
