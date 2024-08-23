@@ -85,8 +85,8 @@ class _HomeScreenState extends State<HomeScreen>
                       children: [
                         CircleAvatar(
                           radius: 40,
-                          backgroundImage:
-                              NetworkImage('https://placeimg.com/80/80/people'),
+                          backgroundImage: NetworkImage(
+                              'https://www.colorcombos.com/images/colors/04169E.png'),
                         ),
                         SizedBox(height: 16),
                         Text(

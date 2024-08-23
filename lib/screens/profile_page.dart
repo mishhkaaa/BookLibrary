@@ -113,8 +113,8 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage:
-                      NetworkImage('https://placeimg.com/100/100/people'),
+                  backgroundImage: NetworkImage(
+                      'https://www.colorcombos.com/images/colors/04169E.png'),
                 ),
                 SizedBox(height: 20),
                 Text(
