@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'book_provider.dart';
@@ -27,13 +28,20 @@ class ContinueReadingTabContent extends StatelessWidget {
           itemBuilder: (context, index) {
             final book = books[index];
             return ListTile(
-              title: Text(
-                book.title,
-                style: TextStyle(fontSize: 28),
-              ),
-              subtitle: Text(
-                book.summary,
-                style: TextStyle(fontSize: 20),
+              title: GestureDetector(
+                onTap: () {
+                  // Navigate to the details page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BookDetailsPage(book: book),
+                    ),
+                  );
+                },
+                child: Text(
+                  book.title,
+                  style: TextStyle(fontSize: 24),
+                ),
               ),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -47,7 +55,8 @@ class ContinueReadingTabContent extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Text('Complete Reading'),
+                    child: Text('Complete Reading',
+                        style: TextStyle(fontSize: 14)),
                   ),
                   SizedBox(width: 8),
                   ElevatedButton(
@@ -68,6 +77,41 @@ class ContinueReadingTabContent extends StatelessWidget {
           },
         );
       },
+    );
+  }
+}
+
+class BookDetailsPage extends StatelessWidget {
+  final Book book;
+
+  const BookDetailsPage({super.key, required this.book});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          book.title,
+          style: TextStyle(color: Colors.white, fontSize: 28),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              book.title,
+              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 16),
+            Text(
+              book.summary,
+              style: TextStyle(fontSize: 20),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

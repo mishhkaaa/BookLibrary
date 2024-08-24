@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: AppColors.darkBlue,
         hintColor: AppColors.accentOrange,
-        scaffoldBackgroundColor: AppColors.lightSkyBlue,
+        scaffoldBackgroundColor: const Color.fromARGB(255, 208, 232, 241),
         textTheme: TextTheme(
           bodyLarge: TextStyle(
               color: themeProvider.currentTheme.textTheme.bodyLarge?.color,

@@ -25,25 +25,46 @@ class _ProfilePageState extends State<ProfilePage> {
         final _locationController = TextEditingController(text: _location);
 
         return AlertDialog(
-          title: Text('Edit Profile'),
+          backgroundColor: Colors.white,
+          title: Text('Edit Profile',
+              style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 24,
+                  color: Color.fromARGB(255, 8, 27, 149))),
           content: SingleChildScrollView(
             child: Column(
               children: [
                 TextField(
                   controller: _userNameController,
-                  decoration: InputDecoration(labelText: 'User Name'),
+                  decoration: InputDecoration(
+                      labelText: 'User Name',
+                      labelStyle: TextStyle(
+                          color: Color.fromARGB(255, 8, 27, 149),
+                          fontWeight: FontWeight.bold)),
                 ),
                 TextField(
                   controller: _emailController,
-                  decoration: InputDecoration(labelText: 'Email'),
+                  decoration: InputDecoration(
+                      labelText: 'Email',
+                      labelStyle: TextStyle(
+                          color: Color.fromARGB(255, 8, 27, 149),
+                          fontWeight: FontWeight.bold)),
                 ),
                 TextField(
                   controller: _phoneNumberController,
-                  decoration: InputDecoration(labelText: 'Phone Number'),
+                  decoration: InputDecoration(
+                      labelText: 'Phone Number',
+                      labelStyle: TextStyle(
+                          color: Color.fromARGB(255, 8, 27, 149),
+                          fontWeight: FontWeight.bold)),
                 ),
                 TextField(
                   controller: _locationController,
-                  decoration: InputDecoration(labelText: 'Location'),
+                  decoration: InputDecoration(
+                      labelText: 'Location',
+                      labelStyle: TextStyle(
+                          color: Color.fromARGB(255, 8, 27, 149),
+                          fontWeight: FontWeight.bold)),
                 ),
               ],
             ),
@@ -92,8 +113,8 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage:
-                      NetworkImage('https://placeimg.com/100/100/people'),
+                  backgroundImage: NetworkImage(
+                      'https://www.colorcombos.com/images/colors/04169E.png'),
                 ),
                 SizedBox(height: 20),
                 Text(

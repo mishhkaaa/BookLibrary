@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables, use_key_in_widget_constructors, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
 import 'settings_page.dart';
@@ -33,8 +33,8 @@ class AppDrawer extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 40,
-                    backgroundImage:
-                        NetworkImage('https://placeimg.com/80/80/people'),
+                    backgroundImage: NetworkImage(
+                        'https://www.colorcombos.com/images/colors/04169E.png'),
                   ),
                   SizedBox(height: 16),
                   Text(

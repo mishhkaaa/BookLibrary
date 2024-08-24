@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, prefer_const_declarations, prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'app_colors.dart'; // Import the colors
 
@@ -122,7 +124,7 @@ class _HomeTabContentState extends State<HomeTabContent>
                       const SizedBox(height: 0),
                       // Paragraph with custom font and color
                       Text(
-                        'Librazy is your go-to app for discovering and managing your book collection. Our app offers features such as personalized book recommendations, easy search options, and a user-friendly interface to help you keep track of your reading progress and favorite titles. Whether you\'re an avid reader or just getting started, Libzary has something for everyone.',
+                        'Librazy is your go-to app for discovering and managing your book collection. Our app offers features such as personalized book recommendations, easy search options, and a user-friendly interface to help you keep track of your reading progress and favorite titles. Whether you\'re an avid reader or just getting started, Librazy has something for everyone.',
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.white.withOpacity(0.9),
@@ -153,11 +155,12 @@ class _HomeTabContentState extends State<HomeTabContent>
                       ),
                     ),
                     child: Text(
-                      'Tap the Add Books button to add new titles to your collection!\nNavigate to the ReadList Tab to access the added books',
+                      'Tap the Add Books button to add new titles to your collection!\nNavigate to the ReadList Tab to access the added books\nIf you are a first time reader, Don\'t Worry!! Click on our Genre Tab to explore various book genres and their most popular books',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 18,
+                        fontSize: 16,
                       ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ],
